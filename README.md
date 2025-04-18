@@ -4,7 +4,7 @@ A Python-based agent that helps shorten messages using Google's Agent Developmen
 
 ## Prerequisites
 
-- Python 3.9+
+- Python 3.12+
 - Poetry (Python package manager)
 - Google Cloud account with Vertex AI API enabled
 - Google Cloud CLI (`gcloud`) installed and authenticated
@@ -96,7 +96,7 @@ poetry run deploy-remote --list_sessions --resource_id=your-resource-id
 
 4. Send a message:
 ```bash
-poetry run deploy-remote --send --resource_id=your-resource-id --session_id=your-session-id --message="Shorten this message: Hello, how are you doing today?"
+poetry run deploy-remote --send --resource_id=your-resource-id --session_id=your-session-id --message="Hello, how are you doing today? So far, I've made breakfast today, walkted dogs, and went to work."
 ```
 
 5. Clean up (delete deployment):
