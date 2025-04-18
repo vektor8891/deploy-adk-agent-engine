@@ -56,7 +56,9 @@ def main():
 
     # Send a test query
     print("\nSending test query...")
-    test_message = "Shorten this message: Hello, how are you doing today? I hope you're having a wonderful day!"
+    test_message = (
+        "Hello, how are you doing today? I hope you're having a wonderful day!"
+    )
     print(f"Message: {test_message}")
     print("\nResponse:")
     for event in app.stream_query(
