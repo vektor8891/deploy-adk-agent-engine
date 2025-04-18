@@ -8,6 +8,8 @@ A Python-based agent that helps shorten messages using Google's Agent Developmen
 - Poetry (Python package manager)
 - Google Cloud account with Vertex AI API enabled
 - Google Cloud CLI (`gcloud`) installed and authenticated
+  - Follow the [official installation guide](https://cloud.google.com/sdk/docs/install) to install gcloud
+  - After installation, run `gcloud init` and `gcloud auth login`
 
 ## Installation
 
