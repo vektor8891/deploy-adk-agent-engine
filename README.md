@@ -15,7 +15,7 @@ A Python-based agent that helps shorten messages using Google's Agent Developmen
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/bhancockio/deploy-adk-agent-engine.git
 cd adk-short-bot
 ```
 
