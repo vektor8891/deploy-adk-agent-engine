@@ -14,101 +14,117 @@ A Python-based agent that helps shorten messages using Google's Agent Developmen
 ## Installation
 
 1. Clone the repository:
-```bash
-git clone https://github.com/bhancockio/deploy-adk-agent-engine.git
-cd adk-short-bot
-```
+
+   ```bash
+   git clone https://github.com/bhancockio/deploy-adk-agent-engine.git
+   cd adk-short-bot
+   ```
 
 2. Install Poetry if you haven't already:
-```bash
-curl -sSL https://install.python-poetry.org | python3 -
-```
+
+   ```bash
+   curl -sSL https://install.python-poetry.org | python3 -
+   ```
 
 3. Install project dependencies:
-```bash
-poetry install
-```
+
+   ```bash
+   poetry install
+   ```
 
 4. Activate the virtual environment:
-```bash
-source $(poetry env info --path)/bin/activate
-```
+
+   ```bash
+   source $(poetry env info --path)/bin/activate
+   ```
 
 ## Configuration
 
 1. Create a `.env` file in the project root with the following variables:
-```bash
-GOOGLE_GENAI_USE_VERTEXAI=TRUE
-GOOGLE_CLOUD_PROJECT=your-project-id
-GOOGLE_CLOUD_LOCATION=your-location  # e.g., us-central1
-GOOGLE_CLOUD_STAGING_BUCKET=gs://your-bucket-name
-```
+
+   ```bash
+   GOOGLE_GENAI_USE_VERTEXAI=TRUE
+   GOOGLE_CLOUD_PROJECT=your-project-id
+   GOOGLE_CLOUD_LOCATION=your-location  # e.g., us-central1
+   GOOGLE_CLOUD_STAGING_BUCKET=gs://your-bucket-name
+   ```
 
 2. Set up Google Cloud authentication:
-```bash
-gcloud auth login
-gcloud config set project your-project-id
-```
+
+   ```bash
+   gcloud auth login
+   gcloud config set project your-project-id
+   ```
 
 3. Enable required APIs:
-```bash
-gcloud services enable aiplatform.googleapis.com
-```
+
+   ```bash
+   gcloud services enable aiplatform.googleapis.com
+   ```
 
 ## Usage
 
 ### Local Testing
 
 1. Create a new session:
-```bash
-poetry run deploy-local --create_session
-```
+
+   ```bash
+   poetry run deploy-local --create_session
+   ```
 
 2. List all sessions:
-```bash
-poetry run deploy-local --list_sessions
-```
+
+   ```bash
+   poetry run deploy-local --list_sessions
+   ```
 
 3. Get details of a specific session:
-```bash
-poetry run deploy-local --get_session --session_id=your-session-id
-```
+
+   ```bash
+   poetry run deploy-local --get_session --session_id=your-session-id
+   ```
 
 4. Send a message to shorten:
-```bash
-poetry run deploy-local --send --session_id=your-session-id --message="Shorten this message: Hello, how are you doing today?"
-```
+
+   ```bash
+   poetry run deploy-local --send --session_id=your-session-id --message="Shorten this message: Hello, how are you doing today?"
+   ```
 
 ### Remote Deployment
 
 1. Deploy the agent:
-```bash
-poetry run deploy-remote --create
-```
+
+   ```bash
+   poetry run deploy-remote --create
+   ```
 
 2. Create a session:
-```bash
-poetry run deploy-remote --create_session --resource_id=your-resource-id
-```
+
+   ```bash
+   poetry run deploy-remote --create_session --resource_id=your-resource-id
+   ```
 
 3. List sessions:
-```bash
-poetry run deploy-remote --list_sessions --resource_id=your-resource-id
-```
+
+   ```bash
+   poetry run deploy-remote --list_sessions --resource_id=your-resource-id
+   ```
 
 4. Send a message:
-```bash
-poetry run deploy-remote --send --resource_id=your-resource-id --session_id=your-session-id --message="Hello, how are you doing today? So far, I've made breakfast today, walkted dogs, and went to work."
-```
+
+   ```bash
+   poetry run deploy-remote --send --resource_id=your-resource-id --session_id=your-session-id --message="Hello, how are you doing today? So far, I've made breakfast today, walkted dogs, and went to work."
+   ```
 
 5. Clean up (delete deployment):
-```bash
-poetry run deploy-remote --delete --resource_id=your-resource-id
-```
+
+   ```bash
+   poetry run deploy-remote --delete --resource_id=your-resource-id
+   ```
 
 ## Project Structure
 
-```
+```text
 adk-short-bot/
 ├── adk_short_bot/          # Main package directory
 │   ├── __init__.py
