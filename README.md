@@ -66,29 +66,9 @@ A Python-based agent that helps shorten messages using Google's Agent Developmen
 
 ### Local Testing
 
-1. Create a new session:
-
-   ```bash
-   poetry run deploy-local --create_session
-   ```
-
-2. List all sessions:
-
-   ```bash
-   poetry run deploy-local --list_sessions
-   ```
-
-3. Get details of a specific session:
-
-   ```bash
-   poetry run deploy-local --get_session --session_id=your-session-id
-   ```
-
-4. Send a message to shorten:
-
-   ```bash
-   poetry run deploy-local --send --session_id=your-session-id --message="Shorten this message: Hello, how are you doing today?"
-   ```
+```bash
+poetry run deploy-local
+```
 
 ### Remote Deployment
 
