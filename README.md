@@ -1,6 +1,6 @@
 # ADK Short Bot
 
-A Python-based agent that helps shorten messages using Google's Agent Development Kit (ADK) and Vertex AI.
+A Python-based agent that helps shorten messages using Google's Agent Development Kit (ADK) and Vertex AI. See the [Youtube video](https://www.youtube.com/watch?v=bPtKnDIVEsg) for details.
 
 ## Prerequisites
 
