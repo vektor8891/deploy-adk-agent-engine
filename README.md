@@ -70,6 +70,12 @@ A Python-based agent that helps shorten messages using Google's Agent Developmen
 poetry run deploy-local
 ```
 
+### Web Interface
+
+```bash
+adk web
+```
+
 ### Remote Deployment
 
 1. Deploy the agent:
