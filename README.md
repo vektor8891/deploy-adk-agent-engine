@@ -40,6 +40,12 @@ A Python-based agent that helps shorten messages using Google's Agent Developmen
 
 ## Configuration
 
+**Getting your Google Cloud Project ID:**
+
+- Method 1: Use gcloud CLI: `gcloud config get-value project`
+- Method 2: Check the Google Cloud Console URL when you're in your project: `https://console.cloud.google.com/home/dashboard?project=YOUR-PROJECT-ID`
+- Method 3: In Google Cloud Console, the project ID is shown in the project selector dropdown at the top of the page
+
 1. Create a `.env` file in the project root with the following variables:
 
    ```bash
