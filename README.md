@@ -79,6 +79,13 @@ A Python-based agent that helps shorten messages using Google's Agent Developmen
 
    d. The service account key file should be placed in the `credentials/` directory and referenced by the `GOOGLE_APPLICATION_CREDENTIALS` environment variable.
 
+   **Note:** If you already have an existing service account (like `react-agent-sa@react-agent-467614.iam.gserviceaccount.com`), you can skip step 2a and use the existing one.
+
+   **Service Account Management:**
+   - To list existing service accounts, use your personal Google account: `gcloud auth login && gcloud iam service-accounts list`
+   - Service accounts follow the principle of least privilege - they only have permissions needed for their specific tasks
+   - For administrative tasks (like listing service accounts), use your personal Google account rather than the service account
+
 3. Enable required APIs:
 
    ```bash
@@ -164,7 +171,13 @@ To add new features or modify existing ones:
    - Check that the service account has the necessary permissions (`roles/aiplatform.user` and `roles/storage.admin`)
    - Ensure the Vertex AI API is enabled
 
-2. If deployment fails:
+2. If you get permission errors when using gcloud commands:
+   - Service accounts have minimal permissions by design (principle of least privilege)
+   - For administrative tasks like listing service accounts, use your personal Google account: `gcloud auth login`
+   - The service account should only be used for application runtime operations
+   - If you need to manage service accounts, use the Google Cloud Console or your personal authenticated account
+
+3. If deployment fails:
    - Check the staging bucket exists and is accessible
    - Verify all required environment variables are set
    - Ensure you have the necessary permissions in your Google Cloud project
