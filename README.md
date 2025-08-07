@@ -114,6 +114,17 @@ adk web
 
 ### Remote Deployment
 
+**Getting your Resource ID:**
+
+After deploying the agent (step 1 below), the resource ID will be displayed in the output. It typically looks like:
+`projects/YOUR-PROJECT-ID/locations/YOUR-LOCATION/reasoningEngines/RESOURCE-ID`
+
+To list all existing deployments and their resource IDs:
+
+```bash
+poetry run deploy-remote --list
+```
+
 1. Deploy the agent:
 
    ```bash

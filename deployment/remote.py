@@ -83,10 +83,23 @@ def create_session(resource_id: str, user_id: str) -> None:
     remote_app = agent_engines.get(resource_id)
     remote_session = remote_app.create_session(user_id=user_id)
     print("Created session:")
-    print(f"  Session ID: {remote_session['id']}")
-    print(f"  User ID: {remote_session['user_id']}")
-    print(f"  App name: {remote_session['app_name']}")
-    print(f"  Last update time: {remote_session['last_update_time']}")
+    print(f"  Session ID: {remote_session.get('id', 'N/A')}")
+    
+    # Print available fields, handling missing keys gracefully
+    if 'user_id' in remote_session:
+        print(f"  User ID: {remote_session['user_id']}")
+    else:
+        print(f"  User ID: {user_id}")  # Use the input parameter
+    
+    if 'app_name' in remote_session:
+        print(f"  App name: {remote_session['app_name']}")
+    
+    if 'last_update_time' in remote_session:
+        print(f"  Last update time: {remote_session['last_update_time']}")
+    
+    # Debug: Print all available keys
+    print(f"  Available fields: {list(remote_session.keys())}")
+    
     print("\nUse this session ID with --session_id when sending messages.")
 
 
@@ -96,7 +109,11 @@ def list_sessions(resource_id: str, user_id: str) -> None:
     sessions = remote_app.list_sessions(user_id=user_id)
     print(f"Sessions for user '{user_id}':")
     for session in sessions:
-        print(f"- Session ID: {session['id']}")
+        session_id = session.get('id', 'N/A')
+        print(f"- Session ID: {session_id}")
+        # Debug: show available keys for first session
+        if session == sessions[0]:
+            print(f"  Available session fields: {list(session.keys())}")
 
 
 def get_session(resource_id: str, user_id: str, session_id: str) -> None:
@@ -104,10 +121,22 @@ def get_session(resource_id: str, user_id: str, session_id: str) -> None:
     remote_app = agent_engines.get(resource_id)
     session = remote_app.get_session(user_id=user_id, session_id=session_id)
     print("Session details:")
-    print(f"  ID: {session['id']}")
-    print(f"  User ID: {session['user_id']}")
-    print(f"  App name: {session['app_name']}")
-    print(f"  Last update time: {session['last_update_time']}")
+    print(f"  ID: {session.get('id', 'N/A')}")
+    
+    # Handle missing keys gracefully
+    if 'user_id' in session:
+        print(f"  User ID: {session['user_id']}")
+    else:
+        print(f"  User ID: {user_id}")  # Use the input parameter
+    
+    if 'app_name' in session:
+        print(f"  App name: {session['app_name']}")
+    
+    if 'last_update_time' in session:
+        print(f"  Last update time: {session['last_update_time']}")
+    
+    # Debug: Print all available keys
+    print(f"  Available fields: {list(session.keys())}")
 
 
 def send_message(resource_id: str, user_id: str, session_id: str, message: str) -> None:
