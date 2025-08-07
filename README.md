@@ -47,14 +47,37 @@ A Python-based agent that helps shorten messages using Google's Agent Developmen
    GOOGLE_CLOUD_PROJECT=your-project-id
    GOOGLE_CLOUD_LOCATION=your-location  # e.g., us-central1
    GOOGLE_CLOUD_STAGING_BUCKET=gs://your-bucket-name
+   GOOGLE_APPLICATION_CREDENTIALS=./credentials/service-account-key.json
    ```
 
-2. Set up Google Cloud authentication:
+2. Set up Google Cloud authentication using service account:
+
+   a. Create a service account in your Google Cloud project:
 
    ```bash
-   gcloud auth login
-   gcloud config set project your-project-id
+   gcloud iam service-accounts create adk-bot-sa --display-name="ADK Bot Service Account"
    ```
+
+   b. Grant necessary permissions to the service account:
+
+   ```bash
+   gcloud projects add-iam-policy-binding your-project-id \
+     --member="serviceAccount:adk-bot-sa@your-project-id.iam.gserviceaccount.com" \
+     --role="roles/aiplatform.user"
+   
+   gcloud projects add-iam-policy-binding your-project-id \
+     --member="serviceAccount:adk-bot-sa@your-project-id.iam.gserviceaccount.com" \
+     --role="roles/storage.admin"
+   ```
+
+   c. Create and download the service account key:
+
+   ```bash
+   gcloud iam service-accounts keys create ./credentials/service-account-key.json \
+     --iam-account=adk-bot-sa@your-project-id.iam.gserviceaccount.com
+   ```
+
+   d. The service account key file should be placed in the `credentials/` directory and referenced by the `GOOGLE_APPLICATION_CREDENTIALS` environment variable.
 
 3. Enable required APIs:
 
@@ -136,9 +159,10 @@ To add new features or modify existing ones:
 ## Troubleshooting
 
 1. If you encounter authentication issues:
-   - Ensure you're logged in with `gcloud auth login`
+   - Ensure the `GOOGLE_APPLICATION_CREDENTIALS` environment variable points to a valid service account key file
    - Verify your project ID and location in `.env`
-   - Check that the Vertex AI API is enabled
+   - Check that the service account has the necessary permissions (`roles/aiplatform.user` and `roles/storage.admin`)
+   - Ensure the Vertex AI API is enabled
 
 2. If deployment fails:
    - Check the staging bucket exists and is accessible
